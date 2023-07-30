@@ -25,7 +25,7 @@ function CV() {
             name="CVfile"
             id="CVfile"
             className="inputfile"
-            data-multiple-caption="{count} files selected"
+            accept=".pdf,.doc,.docx"
             multiple
             onChange={CVhandleFileChange}
           />

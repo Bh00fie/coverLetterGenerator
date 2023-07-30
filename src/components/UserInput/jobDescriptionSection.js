@@ -26,7 +26,7 @@ function JobDescription() {
                 name="JDfile"
                 id="JDfile"
                 className="inputfile"
-                data-multiple-caption="{count} files selected"
+                accept=".pdf,.doc,.docx"
                 multiple
                 onChange={JDhandleFileChange}
               />
