@@ -45,6 +45,7 @@
     border-radius: 13px;
     padding: 0.5rem;
     background-color: rgba(255, 0, 0, 0.664);
+    border: 2px black solid;
 }
 
 .inputfile:focus + label,
@@ -54,9 +55,4 @@
 
 .inputfile + label {
 	cursor: pointer; /* "hand" cursor */
-}
-
-.inputfile:focus + label {
-	outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
 }

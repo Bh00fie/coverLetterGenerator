@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "./cvSection.css";
 
 function CV() {
-  const [fileName, setFileName] = useState("");
+  const [CVfileName, setFileName] = useState("");
 
-  const handleFileChange = (e) => {
-    const input = e.target;
+  const CVhandleFileChange = (e) => {
+    const CVinput = e.target;
 
-    let newFileName = "";
-    if (input.files && input.files.length > 0) {
-      newFileName = input.files[0].name;
+    let CVnewFileName = "";
+    if (CVinput.files && CVinput.files.length > 0) {
+      CVnewFileName = CVinput.files[0].name;
     }
 
-    setFileName(newFileName); // Set the state with the new file name
+    setFileName(CVnewFileName); // Set the state with the new file name
   };
 
   return (
@@ -22,16 +22,16 @@ function CV() {
         <div className="CVSection" id="CVAttach">
           <input
             type="file"
-            name="file"
-            id="file"
+            name="CVfile"
+            id="CVfile"
             className="inputfile"
             data-multiple-caption="{count} files selected"
             multiple
-            onChange={handleFileChange}
+            onChange={CVhandleFileChange}
           />
-          <label htmlFor="file" id="fileUpload">
-            {fileName ? (
-              <span>{fileName}</span>
+          <label htmlFor="CVfile" id="CVfileUpload">
+            {CVfileName ? (
+              <span>{CVfileName}</span>
             ) : (
               <>
                 Choose a file<span></span>
