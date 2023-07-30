@@ -1,7 +1,7 @@
 import React from "react"
 import "./initialSection.css"
 
-function initialSection() {
+function InitialSection() {
     return (
         <div>
             <h1>
@@ -11,4 +11,4 @@ function initialSection() {
     );
 }
 
-export default initialSection;
+export default InitialSection;

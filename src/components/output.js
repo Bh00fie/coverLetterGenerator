@@ -1,7 +1,7 @@
 import React from "react"
 import "./output.css"
 
-function output() {
+function Output() {
     return (
         <div>
             <h1>
@@ -11,4 +11,4 @@ function output() {
     );
 }
 
-export default output;
+export default Output;

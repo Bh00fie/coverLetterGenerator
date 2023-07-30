@@ -5,7 +5,7 @@ import UserInfo from './personalInfo';
 import CV from './cvSection';
 import JobDescription from './jobDescriptionSection';
 
-function userInput() {
+function UserInput() {
     return (
         <Router>
             <UserInfo />
@@ -15,4 +15,4 @@ function userInput() {
     );
 }
 
-export default userInput;
+export default UserInput;
