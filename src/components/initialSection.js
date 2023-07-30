@@ -5,7 +5,7 @@ function InitialSection() {
     return (
         <div>
             <h1>
-                A
+                Initial Section
             </h1>
         </div>
     );

@@ -14,12 +14,12 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <div>
        <InitialSection/>
        <UserInput/>
        <Output/>
        <Footer/>
-    </Router>
+    </div>
   );
 }
 
