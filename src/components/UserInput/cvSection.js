@@ -18,7 +18,7 @@ function CV() {
   return (
     <div id="CVInput">
       <div id="CVInfoInput">
-        <textarea className="CVSection" id="CVtext" name="CV" placeholder="CV" required />
+            <textarea className="CVSection" id="CVtext" name="CV" placeholder="CV" required />
         <div className="CVSection" id="CVAttach">
           <input
             type="file"

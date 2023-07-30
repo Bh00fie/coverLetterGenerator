@@ -2,13 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin: 2rem 0;
+
 }
 
 #CVInfoInput {
     display: flex;
     flex-direction: column;
     align-content: center;
+    
 }
 
 #CVtext {

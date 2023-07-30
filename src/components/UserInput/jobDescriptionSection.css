@@ -1,0 +1,59 @@
+#JDInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;  
+}
+
+#JDInfoInput {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+}
+
+#JDtext {
+    text-align: center;
+    padding: 0.5rem;
+    border: 2px black solid;
+    border-radius: 13px ;
+    margin: 0.5rem;
+    resize: none;
+    height: 10rem;
+    width: 30rem;
+}
+
+#JDAttach {
+    display: flex;
+    justify-content: center;
+}
+
+/* Attach file button styling --- taken from: https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */ 
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: black;
+    display: inline-block;
+    border-radius: 13px;
+    padding: 0.5rem;
+    background-color: rgba(255, 0, 0, 0.664);
+    border: 2px black solid;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: rgba(255, 0, 0, 0.87);
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}

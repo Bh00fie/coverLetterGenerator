@@ -19,7 +19,7 @@ function JobDescription() {
     return (
         <div id="JDInput">
           <div id="JDInfoInput">
-            <textarea className="JDSection" id="JDtext" name="JD" placeholder="Job Description" required />
+                <textarea className="JDSection" id="JDtext" name="JD" placeholder="Job Description" required />
             <div className="JDSection" id="JDAttach">
               <input
                 type="file"
