@@ -1,0 +1,39 @@
+/* Overall Styling of the element  */
+#initialSection {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Log in and register account section */
+#userAccount {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 2rem ;
+}
+
+#userAccount h3 {
+    font-weight: 700;
+    margin: 1rem;
+    font-size: 1.1rem;
+}
+
+
+/* Webpage Title Section */
+#webpageTitleSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20vh 10vh;
+}
+
+#webpageTitleSection h2 {
+    font-weight: 700;
+    font-size: 3rem;
+    /* letter-spacing: 0.1rem; */
+}
+
+#webpageTitleSection h3 {
+    font-size: 1.5rem;
+    /* letter-spacing: 0.1rem; */
+}
+

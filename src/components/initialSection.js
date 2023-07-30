@@ -9,8 +9,8 @@ function InitialSection() {
                 <h3> Login </h3>
             </div>
             <div id="webpageTitleSection">
-                <h2 id="webpageTitle"> Cover Letter Generator using AI </h2>
-                <h3 id="webpageDescription"> Create your next cover letter in two minutes!</h3>
+                <h2> Cover Letter Generator using AI </h2>
+                <h3> Create your next cover letter in two minutes!</h3>
             </div>
         </div>
     );
