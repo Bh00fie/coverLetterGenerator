@@ -5,11 +5,11 @@ import JobDescription from './jobDescriptionSection';
 
 function UserInput() {
     return (
-        <div>
+        <form>
             <UserInfo />
             <CV />
             <JobDescription />
-        </div>
+        </form>
     );
 }
 

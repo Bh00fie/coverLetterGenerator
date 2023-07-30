@@ -1,0 +1,22 @@
+#personalInput {
+    display: flex;
+    justify-content: center;
+}
+
+#personalInfoInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px black solid ;
+    width: 80%;
+    padding-bottom: 2rem;
+}
+
+
+#personalInfoInput input{
+    text-align: center;
+    padding: 0.5rem;
+    border: 2px black solid;
+    border-radius: 13px ;
+    margin: 0.5rem;
+}
