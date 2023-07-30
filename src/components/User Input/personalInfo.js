@@ -1,7 +1,7 @@
 import React from "react"
 import "./personalInfo.css"
 
-function userInfo() {
+function UserInfo() {
     return (
         <div>
             <h1>
@@ -11,4 +11,4 @@ function userInfo() {
     );
 }
 
-export default userInfo;
+export default UserInfo;

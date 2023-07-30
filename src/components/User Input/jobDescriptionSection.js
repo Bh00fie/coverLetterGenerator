@@ -1,7 +1,7 @@
 import React from "react"
 import "./jobDescriptionSection.css"
 
-function jobDescription() {
+function JobDescription() {
     return (
         <div>
             <h1>
@@ -11,4 +11,4 @@ function jobDescription() {
     );
 }
 
-export default jobDescription;
+export default JobDescription;
