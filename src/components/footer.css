@@ -1,0 +1,33 @@
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 4rem;
+
+}
+
+#userName {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#photoProfile {
+    width: 10rem;
+}
+
+
+#userName h5, #userSocial h5 {
+    font-weight: 700 ;
+}
+
+#gitHub, #LinkedIn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#userSocial img {
+    width: 2rem;
+    height: 2rem;
+}
