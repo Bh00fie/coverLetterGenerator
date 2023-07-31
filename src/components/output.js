@@ -2,11 +2,12 @@ import React from "react"
 import "./output.css"
 
 function Output() {
+    // const downloadFile = () => {
+
+    // }
     return (
-        <div>
-            <h1>
-                A
-            </h1>
+        <div id="outputSection">
+            <button id='downloadButton' type = "button" onclick = "downloadFile()"> Download Cover Letter</button>
         </div>
     );
 }

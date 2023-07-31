@@ -2,6 +2,7 @@
 #initialSection {
     display: flex;
     flex-direction: column;
+    
 }
 
 /* Log in and register account section */
