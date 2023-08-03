@@ -13,6 +13,11 @@ function UserInput() {
         companyName: ""
     });
 
+    const [CVInformation, setCVInformation] = useState({
+        CVValue: ""
+    });
+
+
     const handleUserInfoChange = (fieldName, value) => {
         setUserInformation(prevInfo => ({
             ...prevInfo,
@@ -20,10 +25,17 @@ function UserInput() {
         }));
     };
 
-    const handleGenerateClick = () => {
-        console.log("User Information:", userInformation);
-    };
+    const handleCVChange = (value) => {
+        setCVInformation(prevInfo => ({
+            ...prevInfo,
+            CVValue: value
+        }));
+    }
 
+    const handleGenerateClick = () => {
+        console.log("User Information:", userInformation);  
+        console.log("CV Information:", CVInformation);
+    };
 
     return (
         <form>
@@ -33,8 +45,12 @@ function UserInput() {
             companyName={userInformation.companyName}
             onNameChange={(value) => handleUserInfoChange("fullName", value)}
             onPositionChange={(value) => handleUserInfoChange("positionName", value)}
-            onCompanyChange={(value) => handleUserInfoChange("companyName", value)}/>
-            <CV />
+            onCompanyChange={(value) => handleUserInfoChange("companyName", value)}
+            />
+            <CV 
+            CVValue={CVInformation.CVValue}
+            onCVChange = {(value) => handleCVChange("CVValue", value)}
+            />
             <JobDescription />
             <Submit onSubmitClick={handleGenerateClick} />
         </form>

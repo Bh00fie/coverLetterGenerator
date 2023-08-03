@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./jobDescriptionSection.css"
 
-function JobDescription() {
+function JobDescription({CVValue, onCVChange}) {
 
     const [JDfileName, setFileName] = useState("");
 
@@ -19,7 +19,14 @@ function JobDescription() {
     return (
         <div id="JDInput">
           <div id="JDInfoInput">
-                <textarea className="JDSection" id="JDtext" name="JD" placeholder="Job Description" required />
+                <textarea 
+                className="JDSection" 
+                id="JDtext" 
+                name="JD" 
+                placeholder="Job Description"
+                onChange={(e) => onCVChange(e.target.value)}
+                value={CVValue} 
+                required />
             <div className="JDSection" id="JDAttach">
               <input
                 type="file"
@@ -29,6 +36,7 @@ function JobDescription() {
                 accept=".pdf,.doc,.docx"
                 multiple
                 onChange={JDhandleFileChange}
+                required
               />
               <label htmlFor="JDfile" id="JDfileUpload">
                 {JDfileName ? (
