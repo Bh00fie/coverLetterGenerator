@@ -13,6 +13,10 @@ function UserInput() {
         companyName: ""
     });
 
+    const [JDInformation, setJDInformation] = useState({
+        JDValue: ""
+    });
+    
     const [CVInformation, setCVInformation] = useState({
         CVValue: ""
     });
@@ -25,6 +29,13 @@ function UserInput() {
         }));
     };
 
+    const handleJDChange = (value) => {
+        setJDInformation(prevInfo => ({
+            ...prevInfo,
+            JDValue: value
+        }));
+    }
+
     const handleCVChange = (value) => {
         setCVInformation(prevInfo => ({
             ...prevInfo,
@@ -35,6 +46,7 @@ function UserInput() {
     const handleGenerateClick = () => {
         console.log("User Information:", userInformation);  
         console.log("CV Information:", CVInformation);
+        console.log("JD Information:", JDInformation);
     };
 
     return (
@@ -49,9 +61,11 @@ function UserInput() {
             />
             <CV 
             CVValue={CVInformation.CVValue}
-            onCVChange = {(value) => handleCVChange("CVValue", value)}
-            />
-            <JobDescription />
+            onCVChange = {(value) => handleCVChange(value)} />
+            <JobDescription
+            JDValue={JDInformation.JDValue}
+            onJDChange = {(value) => handleJDChange(value)} />
+
             <Submit onSubmitClick={handleGenerateClick} />
         </form>
     );

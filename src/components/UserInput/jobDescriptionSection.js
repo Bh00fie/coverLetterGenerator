@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./jobDescriptionSection.css"
 
-function JobDescription({CVValue, onCVChange}) {
+function JobDescription({JDValue, onJDChange}) {
 
     const [JDfileName, setFileName] = useState("");
 
@@ -24,8 +24,8 @@ function JobDescription({CVValue, onCVChange}) {
                 id="JDtext" 
                 name="JD" 
                 placeholder="Job Description"
-                onChange={(e) => onCVChange(e.target.value)}
-                value={CVValue} 
+                onChange={(e) => onJDChange(e.target.value)}
+                value={JDValue} 
                 required />
             <div className="JDSection" id="JDAttach">
               <input

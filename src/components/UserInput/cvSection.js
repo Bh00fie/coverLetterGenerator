@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./cvSection.css";
 
-function CV() {
+function CV({CVValue, onCVChange}) {
   const [CVfileName, setFileName] = useState("");
 
   const CVhandleFileChange = (e) => {
@@ -18,7 +18,14 @@ function CV() {
   return (
     <div id="CVInput">
       <div id="CVInfoInput">
-            <textarea className="CVSection" id="CVtext" name="CV" placeholder="CV" required />
+            <textarea 
+            className="CVSection" 
+            id="CVtext" 
+            name="CV" 
+            placeholder="CV" 
+            onChange={(e) => onCVChange(e.target.value)}
+            value={CVValue}
+            required />
         <div className="CVSection" id="CVAttach">
           <input
             type="file"
