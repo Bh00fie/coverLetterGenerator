@@ -1,0 +1,26 @@
+/* Button Section Styling */
+#submitSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10vh 5vh 5vh;
+    border-bottom: 1px black solid ;
+    padding-bottom: 5rem;
+}
+
+
+/* Button Styling */
+#submitButton {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: black;
+    display: inline-block;
+    border-radius: 13px;
+    padding: 0.5rem;
+    background-color: rgba(0, 132, 255, 0.664);
+    border: 2px black solid;
+}
+
+#submitButton:hover{
+    background-color: rgba(0, 132, 255, 0.87);
+}
