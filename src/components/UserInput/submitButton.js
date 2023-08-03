@@ -1,11 +1,11 @@
 import React from "react"
 import "./submitButton.css"
 
-function Submit() {
+function Submit({onSubmitClick}) {
 
     return (
         <div id="submitSection">
-            <button id='submitButton' type = "button" onclick = "downloadFile()"> Generate </button>
+            <button id='submitButton' type = "button" onClick={onSubmitClick}> Generate </button>
         </div>
     );
 }
