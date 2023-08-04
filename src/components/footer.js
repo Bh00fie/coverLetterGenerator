@@ -13,12 +13,12 @@ function Footer() {
             <div id="userSocial">
                 <h5>Contact me at:</h5>
                 <div className="social" id="gitHub">
-                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"/>
-                    <a href="#">GitHub</a>
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"/>
+                    <a href="https://github.com/Bh00fie">GitHub</a>
                 </div>
                 <div className="social" id="LinkedIn">
-                    <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg"/>
-                    <a href="#">LinkedIn</a>
+                    <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" alt="LinkedIn Logo"/>
+                    <a href="https://www.linkedin.com/in/abhinandan-thour-42359b193/">LinkedIn</a>
                 </div>
             </div>
         </footer>
