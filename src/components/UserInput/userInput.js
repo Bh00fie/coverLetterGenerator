@@ -1,9 +1,43 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import UserInfo from './personalInfo';
 import CV from './cvSection';
 import JobDescription from './jobDescriptionSection';
 import Submit from "./submitButton";
-import { generateUserRequest } from "./userMessage";
+import { OpenAIApi, Configuration } from "openai";
+
+// Define your GPT-3 API key
+const OPENAI_API_KEY = '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';
+
+
+// Function to generate a cover letter using GPT-3
+async function generateChatResponse(userRequest) {
+    try {
+        const configuration = new Configuration({
+            apiKey: OPENAI_API_KEY,
+        });
+        const openai = new OpenAIApi(configuration);
+
+        const response = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages: [
+                {
+                    role: "user",
+                    content: userRequest,
+                },
+            ],
+            temperature: 1,
+            max_tokens: 256,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0,
+        });
+
+        return response.data.choices[0].message.content;
+    } catch (error) {
+        console.error('Error generating chat response:', error);
+        return null;
+    }
+}
 
 
 function UserInput() {
@@ -42,16 +76,45 @@ function UserInput() {
     }
 
     // Show submitted info in the console
-    const handleGenerateClick = () => {
+    const handleGenerateClick = async () => {
         console.log("User Information:", userInformation);  
         console.log("CV Information:", CVInformation);
         console.log("JD Information:", JDInformation);
 
-        const userRequest = generateUserRequest(userInformation, CVInformation, JDInformation);
+        const userRequest = `Hi there, I am creating writing a cover letter could you help me with this? my name is ${userInformation.fullName},  I am applying for the position of a ${userInformation.positionName} at ${userInformation.companyName}, my CV is: 
+        ${CVInformation.CVValue}
+        
+        The job description is: 
+        ${JDInformation.JDValue}
+        
+        Could you write me a cover letter that integrate my information and the job the description to show why I want to work for the company and why I am a good fit?
+        
+        Make that 4-5 paragraphs long and max 350 words`;
+
 
         console.log(userRequest);
+
         
+        try {
+            const coverLetter = await generateChatResponse(userRequest); // Change this line
+            if (coverLetter) {
+                console.log('Generated Cover Letter:', coverLetter);
+
+                // Instead of writing to a file, you can create a downloadable link for the user.
+                const blob = new Blob([coverLetter], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'coverLetter.txt';
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        } catch (error) {
+            console.error('Error generating or saving cover letter:', error);
+        }
     };
+
+    
 
 
     return (
