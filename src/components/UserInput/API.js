@@ -1,10 +1,5 @@
-import React from "react";
-import UserInput from "./userInput";
+import { generateUserRequest } from "./userMessage";
+import UserInput from "./UserInput"; 
 
-function ChatGPT() {
 
-    return (
-
-    );
-    
-}
+UserInput.handleGenerateClick(); // This will log the userRequest to the console
