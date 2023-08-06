@@ -78,15 +78,12 @@ function UserInput() {
         console.log("CV Information:", CVInformation);
         console.log("JD Information:", JDInformation);
 
-        const userRequest = `Hi there, I am creating writing a cover letter could you help me with this? my name is ${userInformation.fullName},  I am applying for the position of a ${userInformation.positionName} at ${userInformation.companyName}, my CV is: 
+        const userRequest = `My name is ${userInformation.fullName}, I am looking for job as ${userInformation.positionName} for ${userInformation.companyName}, and I would like you to help me write a cover letter that uses my past experiences and my technical skills in my CV and the job description of the position that I'm applying for to make a tailored cover letter (IT MUST NOT BE AN EMAIL). The cover letter must be less than one page so it must be maximum 250 to 350 words or 4-5 paragraphs. 
+        My CV is: 
         ${CVInformation.CVValue}
         
         The job description is: 
-        ${JDInformation.JDValue}
-        
-        Could you write me a cover letter that integrate my information and the job the description to show why I want to work for the company and why I am a good fit?
-        
-        Make that 4-5 paragraphs long and max 350 words`;
+        ${JDInformation.JDValue}`;
 
 
         console.log(userRequest);

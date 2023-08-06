@@ -13,7 +13,7 @@ function JobDescription({JDValue, onJDChange}) {
         JDnewFileName = JDinput.files[0].name;
       }
   
-      setFileName(JDnewFileName); // Set the state with the new file name
+      setFileName(JDnewFileName);
     };
     
     return (
