@@ -5,7 +5,6 @@ import React from 'react';
 // Building Functions
 import InitialSection from './components/initialSection'
 import UserInput from './components/UserInput/userInput';
-import Output from './components/output';
 import Footer from './components/footer'
 
 // Importing General Styling
@@ -17,7 +16,6 @@ function App() {
     <div>
        <InitialSection/>
        <UserInput/>
-       <Output/>
        <Footer/>
     </div>
   );
