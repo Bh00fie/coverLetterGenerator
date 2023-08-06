@@ -4,9 +4,7 @@ import CV from './cvSection';
 import JobDescription from './jobDescriptionSection';
 import Submit from "./submitButton";
 import { OpenAIApi, Configuration } from "openai";
-
-// Define your GPT-3 API key
-const OPENAI_API_KEY = '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';
+import OPENAI_API_KEY from "./apiKey";
 
 
 // Function to generate a cover letter using GPT-3
@@ -26,7 +24,7 @@ async function generateChatResponse(userRequest) {
                 },
             ],
             temperature: 1,
-            max_tokens: 256,
+            max_tokens: 1000,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
@@ -113,8 +111,6 @@ function UserInput() {
             console.error('Error generating or saving cover letter:', error);
         }
     };
-
-    
 
 
     return (
