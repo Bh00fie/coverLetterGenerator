@@ -27,6 +27,7 @@
 #CVAttach {
     display: flex;
     justify-content: center;
+    display: none;
 }
 
 /* Attach file button styling --- taken from: https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */ 
