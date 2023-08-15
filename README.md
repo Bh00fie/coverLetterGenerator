@@ -1,1 +1,1 @@
-# Cover Letter Gemerator
+# Cover Letter Generator
