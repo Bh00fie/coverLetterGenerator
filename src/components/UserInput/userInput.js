@@ -52,6 +52,12 @@ function UserInput() {
         CVValue: ""
     });
 
+    const [selectedLanguage, setSelectedLanguage] = useState("en"); // Default language is English
+
+    const handleLanguageChange = (e) => {
+        setSelectedLanguage(e.target.value);
+    };
+
     // Handle form changes 
     const handleUserInfoChange = (fieldName, value) => {
         setUserInformation(prevInfo => ({
@@ -83,8 +89,9 @@ function UserInput() {
         ${CVInformation.CVValue}
         
         The job description is: 
-        ${JDInformation.JDValue}`;
-
+        ${JDInformation.JDValue}
+        
+        Make the cover letter in the ${selectedLanguage} Language`;
 
         console.log(userRequest);
 
@@ -126,7 +133,18 @@ function UserInput() {
             JDValue={JDInformation.JDValue}
             onJDChange = {(value) => handleJDChange(value)} />
 
+            {/* Language selection dropdown */}
+            <div id="selectLanguage">
+                <select id="language" value={selectedLanguage} onChange={handleLanguageChange}>
+                    <option value="en">English</option>
+                    <option value="fr">French</option>
+                    {/* Add more language options as needed */}
+                </select>
+            </div>
+
             <Submit onSubmitClick={handleGenerateClick} />
+
+            
         </form>
     );
 }

@@ -24,3 +24,17 @@
 #submitButton:hover{
     background-color: rgba(0, 132, 255, 0.87);
 }
+
+#selectLanguage {
+    display: flex;
+    justify-content: center;
+}
+
+#language {
+    text-align: center;
+    font-weight: 700;
+    padding: 0.5rem 2rem;
+    border: 2px black solid;
+    border-radius: 13px ;
+    margin: 0.5rem;
+}
