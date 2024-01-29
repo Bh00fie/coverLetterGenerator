@@ -1,6 +1,9 @@
 import React from "react"
 import "./footer.css"
 import icon from './images/icon.png'
+import { SocialIcon } from 'react-social-icons/component'
+import 'react-social-icons/github'
+import 'react-social-icons/linkedin'
 
 function Footer() {
     return (
@@ -12,16 +15,13 @@ function Footer() {
             </div>
             <div id="userSocial">
                 <h5>Contact me at:</h5>
-                <div className="social" id="gitHub">
-                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo"/>
-                    <a href="https://github.com/Bh00fie">GitHub</a>
-                </div>
-                <div className="social" id="LinkedIn">
-                    <img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" alt="LinkedIn Logo"/>
-                    <a href="https://www.linkedin.com/in/abhinandan-thour-42359b193/">LinkedIn</a>
+                <div>
+                    <SocialIcon className="socialIcons" url="https://github.com/Bh00fie" />
+                    <SocialIcon className="socialIcons" url="https://www.linkedin.com/in/abhinandanthour/"/>
                 </div>
             </div>
         </footer>
+
     );
 }
 
