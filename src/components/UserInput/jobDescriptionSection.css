@@ -58,3 +58,9 @@
 .inputfile + label {
 	cursor: pointer; /* "hand" cursor */
 }
+
+@media screen and (max-width: 700px) {
+    #CVtext, #JDtext {
+        width: 20rem;
+    }
+}
