@@ -4,10 +4,11 @@ import CV from './cvSection';
 import JobDescription from './jobDescriptionSection';
 import Submit from "./submitButton";
 import { OpenAIApi, Configuration } from "openai";
+// import translate from 'google-translate-api';
 
 
 // Function to generate a cover letter using GPT-3
-async function generateChatResponse(userRequest) {
+async function generateChatResponse(userRequest, language) {
     try {
         const configuration = new Configuration({
             apiKey: process.env.REACT_APP_API_KEY,
@@ -27,6 +28,7 @@ async function generateChatResponse(userRequest) {
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
+            language: language
         });
 
         return response.data.choices[0].message.content;
