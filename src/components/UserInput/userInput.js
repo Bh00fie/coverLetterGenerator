@@ -4,7 +4,6 @@ import CV from './cvSection';
 import JobDescription from './jobDescriptionSection';
 import Submit from "./submitButton";
 import { OpenAIApi, Configuration } from "openai";
-// import translate from 'google-translate-api';
 
 
 // Function to generate a cover letter using GPT-3
@@ -40,8 +39,9 @@ async function generateChatResponse(userRequest, language) {
 
 
 function UserInput() {
-
+    
     // Defining variables
+    const [showPopup, setShowPopup] = useState(false);
     const [userInformation, setUserInformation] = useState({
         fullName: "",
         positionName: "",
@@ -82,6 +82,7 @@ function UserInput() {
 
     // Show submitted info in the console
     const handleGenerateClick = async () => {
+        setShowPopup(true);
         console.log("User Information:", userInformation);  
         console.log("CV Information:", CVInformation);
         console.log("JD Information:", JDInformation);
@@ -99,7 +100,7 @@ function UserInput() {
         try {
             const coverLetter = await generateChatResponse(userRequest); // Change this line
             if (coverLetter) {
-                console.log('Generated Cover Letter:', coverLetter);
+                console.log('Generated Cover Letter:\n', coverLetter);
 
                 // Instead of writing to a file, you can create a downloadable link for the user.
                 const blob = new Blob([coverLetter], { type: 'text/plain' });
@@ -109,9 +110,14 @@ function UserInput() {
                 a.download = 'coverLetter.txt';
                 a.click();
                 URL.revokeObjectURL(url);
+
+                // Hide pop-up after cover letter is generated
+                setShowPopup(false);
             }
         } catch (error) {
             console.error('Error generating or saving cover letter:', error);
+                // Hide pop-up if an error occurs
+                setShowPopup(false);
         }
     };
 
@@ -148,9 +154,15 @@ function UserInput() {
                 </select>
             </div>
 
-            <Submit onSubmitClick={handleGenerateClick} />
+            {showPopup && (
+                <div id="userWait">
+                    <div className="popup">
+                        <p>Generating cover letter...</p>
+                    </div>
+                </div>
+            )}
 
-            
+            <Submit onSubmitClick={handleGenerateClick} />
         </form>
     );
 }
