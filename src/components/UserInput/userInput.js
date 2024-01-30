@@ -138,7 +138,13 @@ function UserInput() {
                 <select id="language" value={selectedLanguage} onChange={handleLanguageChange}>
                     <option value="english">English</option>
                     <option value="french">French</option>
-                    {/* Add more language options as needed */}
+                    <option value="italian">Italian</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="portuguese">Portuguese</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="filipino">Filipino</option>
                 </select>
             </div>
 
