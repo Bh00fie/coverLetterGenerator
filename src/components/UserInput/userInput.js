@@ -86,14 +86,12 @@ function UserInput() {
         console.log("CV Information:", CVInformation);
         console.log("JD Information:", JDInformation);
 
-        const userRequest = `My name is ${userInformation.fullName}, I am looking for job as ${userInformation.positionName} for ${userInformation.companyName}, and I would like you to help me write a cover letter that uses my past experiences and my technical skills in my CV and the job description of the position that I'm applying for to make a tailored cover letter (IT MUST NOT BE AN EMAIL). The cover letter must be less than one page so it must be maximum 250 to 350 words or 4-5 paragraphs. Make sure to also answer these questions: why are you interested in this job? How will it enhance your career? What about this company sets them apart? What have you specifically achieved that others haven't, and how will that serve you in this job? 
+        const userRequest = `My name is ${userInformation.fullName}, I am looking for job as ${userInformation.positionName} for ${userInformation.companyName}, and I would like you to help me write a cover letter that uses my past experiences and my technical skills in my CV and the job description of the position that I'm applying for to make a tailored cover letter (IT MUST NOT BE AN EMAIL). The cover letter must be less than one page so it must be maximum 250 to 350 words or 4-5 paragraphs. Make sure to also answer these questions: why are you interested in this job? How will it enhance your career? What about this company sets them apart? What have you specifically achieved that others haven't, and how will that serve you in this job? The cover letter must be written in ${selectedLanguage}.
         My CV is: 
         ${CVInformation.CVValue}
         
         The job description is: 
-        ${JDInformation.JDValue}
-        
-        Make the cover letter in the ${selectedLanguage} Language`;
+        ${JDInformation.JDValue}`;
 
         console.log(userRequest);
 
