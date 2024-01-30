@@ -54,7 +54,7 @@ function UserInput() {
         CVValue: ""
     });
 
-    const [selectedLanguage, setSelectedLanguage] = useState("en"); // Default language is English
+    const [selectedLanguage, setSelectedLanguage] = useState("english"); // Default language is English
 
     const handleLanguageChange = (e) => {
         setSelectedLanguage(e.target.value);
@@ -138,8 +138,8 @@ function UserInput() {
             {/* Language selection dropdown */}
             <div id="selectLanguage">
                 <select id="language" value={selectedLanguage} onChange={handleLanguageChange}>
-                    <option value="en">English</option>
-                    <option value="fr">French</option>
+                    <option value="english">English</option>
+                    <option value="french">French</option>
                     {/* Add more language options as needed */}
                 </select>
             </div>
