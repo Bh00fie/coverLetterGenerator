@@ -32,8 +32,8 @@ async function generateChatResponse(userRequest, language) {
 
         return response.data.choices[0].message.content;
     } catch (error) {
-        console.error('Error generating chat response:', error);
-        return null;
+        console.log('Error generating chat response:', error);
+        throw new Error('Failed to generate chat response. Please try again later.');
     }
 }
 
@@ -98,26 +98,23 @@ function UserInput() {
 
         
         try {
-            const coverLetter = await generateChatResponse(userRequest); // Change this line
-            if (coverLetter) {
-                console.log('Generated Cover Letter:\n', coverLetter);
+            const coverLetter = await generateChatResponse(userRequest, selectedLanguage);
+            console.log('Generated Cover Letter:\n', coverLetter);
 
-                // Instead of writing to a file, you can create a downloadable link for the user.
-                const blob = new Blob([coverLetter], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'coverLetter.txt';
-                a.click();
-                URL.revokeObjectURL(url);
+            const blob = new Blob([coverLetter], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'coverLetter.txt';
+            a.click();
+            URL.revokeObjectURL(url);
 
-                // Hide pop-up after cover letter is generated
-                setShowPopup(false);
-            }
+            setShowPopup(false);
         } catch (error) {
-            console.error('Error generating or saving cover letter:', error);
-                // Hide pop-up if an error occurs
-                setShowPopup(false);
+            console.log('Error generating or saving cover letter:', error.message);
+            // Notify the user about the error
+            alert(error.message);
+            setShowPopup(false);
         }
     };
 
