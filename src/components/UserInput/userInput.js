@@ -9,9 +9,21 @@ import { OpenAIApi, Configuration } from "openai";
 // Function to generate a cover letter using GPT-3
 async function generateChatResponse(userRequest, language) {
     try {
+        // const configuration = new Configuration({
+        //     apiKey: "process.env.REACT_APP_API_KEY",
+        // });
+
+        // delete configuration.baseOptions.headers['User-Agent'];
         const configuration = new Configuration({
-            apiKey: process.env.REACT_APP_API_KEY,
+            apiKey: "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",
+            organization: "Personal",
+            baseOptions: {
+                headers: {
+                    Authorization: "Bearer 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"
+                }
+            }
         });
+
         const openai = new OpenAIApi(configuration);
 
         const response = await openai.createChatCompletion({
@@ -22,7 +34,7 @@ async function generateChatResponse(userRequest, language) {
                     content: userRequest,
                 },
             ],
-            temperature: 1,
+            temperature: 0.8,
             max_tokens: 10000,
             top_p: 1,
             frequency_penalty: 0,
@@ -32,7 +44,7 @@ async function generateChatResponse(userRequest, language) {
 
         return response.data.choices[0].message.content;
     } catch (error) {
-        console.log('Error generating chat response:', error);
+        console.error('Error generating chat response:', error);
         throw new Error('Failed to generate chat response. Please try again later.');
     }
 }
@@ -111,9 +123,8 @@ function UserInput() {
 
             setShowPopup(false);
         } catch (error) {
-            console.log('Error generating or saving cover letter:', error.message);
+            console.error('Error generating or saving cover letter:', error.message);
             // Notify the user about the error
-            alert(error.message);
             setShowPopup(false);
         }
     };
