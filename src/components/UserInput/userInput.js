@@ -7,21 +7,10 @@ import { OpenAIApi, Configuration } from "openai";
 
 
 // Function to generate a cover letter using GPT-3
-async function generateChatResponse(userRequest, language) {
+async function generateChatResponse(userRequest) {
     try {
-        // const configuration = new Configuration({
-        //     apiKey: "process.env.REACT_APP_API_KEY",
-        // });
-
-        // delete configuration.baseOptions.headers['User-Agent'];
         const configuration = new Configuration({
-            apiKey: "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",
-            organization: "Personal",
-            baseOptions: {
-                headers: {
-                    Authorization: "Bearer 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"
-                }
-            }
+            apiKey: process.env.REACT_APP_API_KEY,
         });
 
         const openai = new OpenAIApi(configuration);
@@ -35,16 +24,15 @@ async function generateChatResponse(userRequest, language) {
                 },
             ],
             temperature: 0.8,
-            max_tokens: 10000,
+            max_tokens: 1000,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
-            language: language
         });
 
         return response.data.choices[0].message.content;
     } catch (error) {
-        console.error('Error generating chat response:', error);
+        console.error('Error generating chat response:', error.response ? error.response.data : error.message);
         throw new Error('Failed to generate chat response. Please try again later.');
     }
 }
@@ -95,24 +83,23 @@ function UserInput() {
     // Show submitted info in the console
     const handleGenerateClick = async () => {
         setShowPopup(true);
-        console.log("User Information:", userInformation);  
+        console.log("User Information:", userInformation);
         console.log("CV Information:", CVInformation);
         console.log("JD Information:", JDInformation);
-
-        const userRequest = `My name is ${userInformation.fullName}, I am looking for job as ${userInformation.positionName} for ${userInformation.companyName}, and I would like you to help me write a cover letter that uses my past experiences and my technical skills in my CV and the job description of the position that I'm applying for to make a tailored cover letter (IT MUST NOT BE AN EMAIL). The cover letter must be less than one page so it must be maximum 250 to 350 words or 4-5 paragraphs. Make sure to also answer these questions: why are you interested in this job? How will it enhance your career? What about this company sets them apart? What have you specifically achieved that others haven't, and how will that serve you in this job? The cover letter must be written in ${selectedLanguage}.
-        My CV is: 
+    
+        const userRequest = `My name is ${userInformation.fullName}, I am looking for job as ${userInformation.positionName} for ${userInformation.companyName}, and I would like you to help me write a cover letter that uses my past experiences and my technical skills in my CV and the job description of the position that I'm applying for to make a tailored cover letter (IT MUST NOT BE AN EMAIL). The cover letter must be less than one page so it must be maximum 250 to 350 words or 4-5 paragraphs. Make sure to also answer these questions: why are you interested in this job? How will it enhance your career? What about this company sets them apart? What have you specifically achieved that others haven't, and how will that serve you in this job?
+        My CV is:
         ${CVInformation.CVValue}
-        
-        The job description is: 
+    
+        The job description is:
         ${JDInformation.JDValue}`;
-
+    
         console.log(userRequest);
-
-        
+    
         try {
-            const coverLetter = await generateChatResponse(userRequest, selectedLanguage);
+            const coverLetter = await generateChatResponse(userRequest);
             console.log('Generated Cover Letter:\n', coverLetter);
-
+    
             const blob = new Blob([coverLetter], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -120,7 +107,7 @@ function UserInput() {
             a.download = 'coverLetter.txt';
             a.click();
             URL.revokeObjectURL(url);
-
+    
             setShowPopup(false);
         } catch (error) {
             console.error('Error generating or saving cover letter:', error.message);
@@ -128,6 +115,7 @@ function UserInput() {
             setShowPopup(false);
         }
     };
+   
 
 
     return (
