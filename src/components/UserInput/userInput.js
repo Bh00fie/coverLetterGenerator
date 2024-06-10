@@ -5,7 +5,6 @@ import JobDescription from './jobDescriptionSection';
 import Submit from "./submitButton";
 import { OpenAIApi, Configuration } from "openai";
 
-
 // Function to generate a cover letter using GPT-3
 async function generateChatResponse(userRequest, language) {
     try {
