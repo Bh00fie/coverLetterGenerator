@@ -9,7 +9,7 @@ import { OpenAIApi, Configuration } from "openai";
 async function generateChatResponse(userRequest, language) {
     try {
         const configuration = new Configuration({
-            apiKey: process.env.REACT_APP_API_KEY,
+            apiKey: process.env.REACT_APP_API_KEY2,
         });
 
         const openai = new OpenAIApi(configuration);
