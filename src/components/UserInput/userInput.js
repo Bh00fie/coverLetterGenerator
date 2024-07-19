@@ -15,7 +15,7 @@ async function generateChatResponse(userRequest, language) {
         const openai = new OpenAIApi(configuration);
 
         const response = await openai.createChatCompletion({
-            model: "gpt-3.5-turbo",
+            model: "gpt-4o-mini",
             messages: [
                 {
                     role: "user",
@@ -23,7 +23,7 @@ async function generateChatResponse(userRequest, language) {
                 },
             ],
             temperature: 0.8,
-            max_tokens: 1000,
+            max_tokens: 2000,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
