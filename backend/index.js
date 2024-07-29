@@ -1,11 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-// const cors = require('cors');
+const cors = require('cors');
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
@@ -19,8 +19,8 @@ app.get('/', (req, res) => {
 });
 
 // Auth routes
-// const authRoutes = require('./routes/auth');
-// app.use('/api/auth', authRoutes);
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
