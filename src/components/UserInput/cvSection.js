@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./cvSection.css";
+import "../generalStyling.css";
 
 function CV({CVValue, onCVChange}) {
   const [CVfileName, setFileName] = useState("");

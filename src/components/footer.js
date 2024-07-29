@@ -1,5 +1,5 @@
 import React from "react"
-import "./footer.css"
+import "./generalStyling.css"
 import icon from './images/icon.png'
 import { SocialIcon } from 'react-social-icons/component'
 import 'react-social-icons/github'

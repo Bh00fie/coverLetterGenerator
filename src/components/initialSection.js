@@ -1,7 +1,7 @@
 // InitialSection.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './initialSection.css';
+import './generalStyling.css';
 
 function InitialSection() {
     return (

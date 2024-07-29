@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./jobDescriptionSection.css"
+import "../generalStyling.css"
 
 function JobDescription({JDValue, onJDChange}) {
 

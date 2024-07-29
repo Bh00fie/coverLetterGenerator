@@ -1,5 +1,5 @@
 import React from "react"
-import "./submitButton.css"
+import "../generalStyling.css"
 
 function Submit({onSubmitClick}) {
 

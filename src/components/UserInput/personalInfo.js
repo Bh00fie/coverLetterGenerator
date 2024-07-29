@@ -1,5 +1,5 @@
 import React from "react"
-import "./personalInfo.css"
+import "../generalStyling.css"
 
 function UserInfo({ fullName, positionName, companyName, onNameChange, onPositionChange, onCompanyChange }) {
 
