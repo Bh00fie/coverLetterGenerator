@@ -5,7 +5,7 @@ function Submit({onSubmitClick}) {
 
     return (
         <div id="submitSection">
-            <button id='submitButton' type = "button" onClick={onSubmitClick}> Generate </button>
+            <button id='submitButton' className="generalButton" type = "button" onClick={onSubmitClick}> Generate </button>
         </div>
     );
 }
