@@ -1,6 +1,6 @@
 # Cover Letter Generator
 
-![Cover Letter Generator](https://github.com/Bh00fie/coverLetterGenerator/raw/main/assets/cover_letter_generator_banner.png)
+![Cover Letter Generator](/frontend/src/components/images/screenshot.png)
 
 A Full-Stack web application designed to generate personalized cover letters using the OpenAI API. This project streamlines the process of creating professional cover letters by leveraging AI to tailor content to specific job applications.
 
