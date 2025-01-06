@@ -1,0 +1,4 @@
+[build]
+  base = "frontend" # Points to the 'frontend' directory
+  publish = "build" # The output directory after building the React app
+  command = "npm install && npm run build" # Install dependencies and build
