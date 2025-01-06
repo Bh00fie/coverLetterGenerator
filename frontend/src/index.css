@@ -1,9 +1,37 @@
+:root {
+  /* Default light theme variables */
+  --backgroundColor: #FFFFFF;
+  --textColor: #000000;
+  --buttonColor: #6fadff;
+  --buttonTextColor: #000000;
+}
+
+body[data-theme="dark"] {
+  --backgroundColor: #17191A; /* Dark background */
+  --textColor: #DCDBD8; /* White text */
+  --buttonColor: #292D2F; /* Grey button */
+  --buttonTextColor: #DCDBD8; /* Button text color */
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: var(--textColor);
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--textColor);
+  transition: color 0.3s;
+}
+
 body {
-  margin: 0;
+  margin: 0 2rem !important;
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  background-color: var(--backgroundColor);
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
 }
 
 code {

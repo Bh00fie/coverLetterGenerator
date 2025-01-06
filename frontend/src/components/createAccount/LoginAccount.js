@@ -31,7 +31,7 @@ function Login() {
 
     return (
         <div>
-            <Link to="/">
+            <Link id="logoSection" to="/">
                 <img id="logoCoverLetter" src={logo} alt="website icon" />
             </Link>
             <div id="loginInput">

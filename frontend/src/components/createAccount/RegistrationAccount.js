@@ -29,7 +29,7 @@ function Registration() {
 
     return (
         <div>
-            <a href="/">
+            <a id="logoSection" href="/">
                 <img id="logoCoverLetter" src={logo} alt="website icon" />
             </a>
             <div id="registrationInput">
