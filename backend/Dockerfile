@@ -1,5 +1,5 @@
 # Use the official Node.js image.
-FROM node:18
+FROM node:20-slim
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
@@ -8,13 +8,15 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install production dependencies.
-RUN npm install --only=production
+RUN npm ci --omit=dev
 
 # Copy the application code to the container image.
 COPY . .
 
-# Run the web service on container startup.
-CMD [ "npm", "start" ]
-
-# Inform Docker that the container listens on port 8080.
+ENV NODE_ENV=production
+# Cloud Run and most hosts override PORT; default to 8080 inside the container.
+ENV PORT=8080
 EXPOSE 8080
+
+# Run the web service on container startup.
+CMD [ "node", "index.js" ]

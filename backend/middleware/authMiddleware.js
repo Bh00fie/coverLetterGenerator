@@ -2,16 +2,25 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
+// Accepts either "Authorization: Bearer <token>" or a bare token
 const authMiddleware = async (req, res, next) => {
-    const token = req.header('Authorization');
-    if (!token) return res.status(401).send('Access denied');
+    const header = req.header('Authorization') || '';
+    const token = header.startsWith('Bearer ') ? header.slice(7) : header;
+    if (!token) return res.status(401).json({ error: 'Access denied' });
+
+    let decoded;
+    try {
+        decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+        return res.status(401).json({ error: 'Invalid token' });
+    }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = await User.findById(decoded.id);
+        if (!req.user) return res.status(401).json({ error: 'User no longer exists' });
         next();
     } catch (err) {
-        res.status(400).send('Invalid token');
+        next(err);
     }
 };
 

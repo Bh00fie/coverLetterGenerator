@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./createAccount.css";
 import logo from "../images/logo.png";
+import { AUTH_API_URL } from "../../config";
 
 function Registration() {
     const [email, setEmail] = useState('');
@@ -11,12 +12,12 @@ function Registration() {
     const handleRegister = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://127.0.0.1:3000/api/auth/register', {
+            const response = await fetch(`${AUTH_API_URL}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
             });
-            const result = await response.json();
+            const result = await response.json().catch(() => ({}));
             if (response.ok) {
                 setMessage('Registration successful!');
             } else {

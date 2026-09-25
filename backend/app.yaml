@@ -1,8 +1,12 @@
-runtime: nodejs18
+runtime: nodejs20
 
-env_variables:
-  MONGODB_URI: "MONGODB_URI=mongodb+srv://bh00fie:CapraGialla13!@coverlettergenerator.djrbtse.mongodb.net/?retryWrites=true&w=majority&appName=coverLetterGenerator"
-  JWT_SECRET: "test123"
+# Secrets live in env.yaml (git-ignored) so they are never committed. It should look like:
+#   env_variables:
+#     MONGODB_URI: "mongodb+srv://<user>:<password>@<cluster>/..."
+#     JWT_SECRET: "<long random string>"
+#     CORS_ORIGIN: "https://<your-netlify-site>.netlify.app"
+includes:
+  - env.yaml
 
 handlers:
   - url: /.*

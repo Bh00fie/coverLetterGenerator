@@ -1,4 +1,17 @@
 [build]
   base = "frontend" # Points to the 'frontend' directory
   publish = "build" # The output directory after building the React app
-  command = "npm install && npm run build" # Install dependencies and build
+  command = "npm ci && npm run build" # Install locked dependencies and build
+  functions = "netlify/functions" # Serverless functions (e.g. /api/generate)
+
+# Serverless cover letter generation
+[[redirects]]
+  from = "/api/generate"
+  to = "/.netlify/functions/generate"
+  status = 200
+
+# Let React Router handle client-side routes like /login and /registration on refresh
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

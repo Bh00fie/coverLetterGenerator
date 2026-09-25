@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./createAccount.css";
 import logo from "../images/logo.png";
+import { AUTH_API_URL } from "../../config";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -11,16 +12,16 @@ function Login() {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('http://127.0.0.1:3000/api/auth/login', {
+            const response = await fetch(`${AUTH_API_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password }),
             });
-            const result = await response.json();
+            const result = await response.json().catch(() => ({}));
             if (response.ok) {
                 setMessage('Login successful!');
                 localStorage.setItem('jwtToken', result.token);
-                window.location.href = '/home'; // Redirect to home page
+                window.location.href = '/'; // Redirect to the generator
             } else {
                 setMessage(result.error || 'Login failed');
             }

@@ -44,10 +44,10 @@ A Full-Stack web application designed to generate personalized cover letters usi
 ## Setup Instructions
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v14+ recommended)
-- [MongoDB](https://www.mongodb.com/try/download/community)
+- [Node.js](https://nodejs.org/) (v18+)
+- [MongoDB](https://www.mongodb.com/try/download/community) (only for login/registration)
 - [OpenAI API Key](https://openai.com/api/)
-- [Git](https://git-scm.com/)
+- [Netlify CLI](https://docs.netlify.com/cli/get-started/) (to run the generator function locally)
 
 ### Steps
 
@@ -57,27 +57,34 @@ A Full-Stack web application designed to generate personalized cover letters usi
    cd coverLetterGenerator
    ```
 
-2. **Install Dependencies:**
+2. **Frontend + cover letter generation** (React app and the `/api/generate` Netlify Function):
    ```bash
+   cd frontend
    npm install
+   OPENAI_API_KEY=your_openai_api_key netlify dev
    ```
+   The OpenAI key is only used server-side by `frontend/netlify/functions/generate.mjs`; never put it in a `REACT_APP_*` variable.
+   Optionally set `REACT_APP_AUTH_API_URL` to the backend URL (defaults to `http://localhost:3000`).
 
-3. **Configure Environment Variables:**
-   - Create a `.env` file in the root directory.
-   - Add the following variables:
-     ```env
-     PORT=3000
-     MONGODB_URI=your_mongodb_connection_string
-     OPENAI_API_KEY=your_openai_api_key
-     ```
-
-4. **Start the Application:**
+3. **Auth backend** (optional, Express + MongoDB): create `backend/.env` with
+   ```env
+   PORT=3000
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=a_long_random_string
+   CORS_ORIGIN=http://localhost:8888
+   ```
+   then run:
    ```bash
+   cd backend
+   npm install
    npm start
    ```
 
-5. **Access the Application:**
-   Open your browser and navigate to `http://localhost:3000`.
+4. **Tests:** `npm test` in `frontend` and in `backend`.
+
+### Deploying
+- **Netlify:** set `OPENAI_API_KEY` (and `REACT_APP_AUTH_API_URL` if the backend is deployed) in the site's environment variables.
+- **App Engine:** put secrets in `backend/env.yaml` (git-ignored, format documented in `app.yaml`).
 
 ---
 
