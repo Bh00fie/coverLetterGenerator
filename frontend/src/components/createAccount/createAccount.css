@@ -1,56 +1,52 @@
-#logoSection{
-    display: flex;
-    justify-content: center;
+/* ##### LOGIN AND REGISTRATION ##### */
+.auth {
+  display: flex;
+  justify-content: center;
+  padding: 72px 0 24px;
 }
-
-#logoCoverLetter{
-    width: 7rem;
-    margin: 1rem;
-    border-radius: 50%;
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
 }
-
-#fontRegistration, #fontLogin {
-    font-weight: 700;
-    font-size: 3rem;
-    margin: 2rem;
-    color: var(--textColor);
+.auth-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 6px 16px rgba(0, 96, 223, 0.22));
 }
-
-#registrationInput, #loginInput{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60vh;
+.auth-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
-#registrationForm, #loginForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.auth-subtitle {
+  margin: 6px 0 28px;
+  color: var(--text-muted);
 }
-#registrationForm input, #loginForm input{
-    text-align: center;
-    padding: 0.5rem;
-    border: 2px var(--textColor) solid;
-    border-radius: 13px ;
-    margin: 0.5rem;
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
 }
-
-#RegistrationButton, #LoginButton{
-    margin-top: 1rem;
+.auth-form .button {
+  margin-top: 8px;
 }
-
-#RegistrationButtonChange, #LoginButtonChange{
-    margin-top: 0rem;
+.auth-message {
+  margin-top: 16px;
+  text-align: left;
 }
-
-#LoginButton, #LoginButtonChange{
-    padding-left: 2rem;
-    padding-right: 2rem;
+.auth-switch {
+  margin: 24px 0 0;
+  padding-top: 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
 }
-
-#orAccount{
-    margin: 0.5rem;
-    font-weight: 500;
-    font-size: 1rem;
-    color: var(--textColor);
+@media screen and (max-width: 600px) {
+  .auth {
+    padding-top: 48px;
+  }
 }

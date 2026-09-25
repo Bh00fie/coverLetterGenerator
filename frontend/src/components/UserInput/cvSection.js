@@ -1,53 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import "../generalStyling.css";
 
-function CV({CVValue, onCVChange}) {
-  const [CVfileName, setFileName] = useState("");
-
-  const CVhandleFileChange = (e) => {
-    const CVinput = e.target;
-
-    let CVnewFileName = "";
-    if (CVinput.files && CVinput.files.length > 0) {
-      CVnewFileName = CVinput.files[0].name;
-    }
-
-    setFileName(CVnewFileName); // Set the state with the new file name
-  };
-
+function CV({ CVValue, onCVChange, showErrors }) {
   return (
-    <div id="CVInput">
-      <div id="CVInfoInput">
-            <textarea 
-            className="CVSection" 
-            id="CVtext" 
-            name="CV" 
-            placeholder="CV" 
-            onChange={(e) => onCVChange(e.target.value)}
-            value={CVValue}
-            required />
-        <div className="CVSection" id="CVAttach">
-          <input
-            type="file"
-            name="CVfile"
-            id="CVfile"
-            className="inputfile"
-            accept=".pdf,.doc,.docx"
-            multiple
-            onChange={CVhandleFileChange}
-          />
-          <label htmlFor="CVfile" id="CVfileUpload">
-            {CVfileName ? (
-              <span>{CVfileName}</span>
-            ) : (
-              <>
-                Choose a file<span></span>
-              </>
-            )}
-          </label>
+    <section className="form-section" aria-labelledby="cv-heading">
+      <div className="section-heading">
+        <span className="step" aria-hidden="true">2</span>
+        <div>
+          <h2 id="cv-heading">Your CV</h2>
+          <p>Paste the text of your CV: experience, education and skills.</p>
         </div>
       </div>
-    </div>
+      <textarea
+        className="input textarea"
+        id="CVtext"
+        name="CV"
+        aria-labelledby="cv-heading"
+        placeholder="Paste your CV here…"
+        rows={9}
+        maxLength={20000}
+        onChange={(e) => onCVChange(e.target.value)}
+        value={CVValue}
+        aria-invalid={(showErrors && !CVValue.trim()) || undefined}
+        required
+      />
+    </section>
   );
 }
 

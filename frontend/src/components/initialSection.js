@@ -1,24 +1,18 @@
 // InitialSection.js
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './generalStyling.css';
+
+const logo = `${process.env.PUBLIC_URL}/logo.svg`;
 
 function InitialSection() {
     return (
-        <div id="initialSection">
-            <div id="userAccount">
-                <Link to="/registration">
-                    <button id='registrationButton' className="generalButton" type="button"> Register </button>
-                </Link>
-                <Link to="/login">
-                    <button id='loginButton' className="generalButton" type="button"> Login </button>
-                </Link>
-            </div>
-            <div id="webpageTitleSection">
-                <h2> Cover Letter Generator using AI </h2>
-                <h3> Create your next cover letter in two minutes!</h3>
-            </div>
-        </div>
+        <section className="hero">
+            <img className="page-icon" src={logo} alt="" width="72" height="72" />
+            <h1 className="hero-title">AI Cover Letter Generator</h1>
+            <p className="hero-subtitle">
+                Paste your CV and the job description, and get a tailored cover letter in minutes. Free, in nine languages.
+            </p>
+        </section>
     );
 }
 

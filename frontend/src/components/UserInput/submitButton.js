@@ -1,12 +1,18 @@
 import React from "react"
 import "../generalStyling.css"
 
-function Submit({onSubmitClick}) {
-
+function Submit({ loading }) {
     return (
-        <div id="submitSection">
-            <button id='submitButton' className="generalButton" type = "button" onClick={onSubmitClick}> Generate </button>
-        </div>
+        <button id="submitButton" className="button button-primary button-large" type="submit" disabled={loading}>
+            {loading ? (
+                <>
+                    <span className="spinner" aria-hidden="true" />
+                    Generating…
+                </>
+            ) : (
+                "Generate cover letter"
+            )}
+        </button>
     );
 }
 

@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./createAccount.css";
-import logo from "../images/logo.png";
 import { AUTH_API_URL } from "../../config";
+import usePageTitle from "../../usePageTitle";
+
+const logo = `${process.env.PUBLIC_URL}/logo.svg`;
 
 function Registration() {
+    usePageTitle("Sign up");
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState({ type: '', message: '' });
+    const [submitting, setSubmitting] = useState(false);
 
     const handleRegister = async (event) => {
         event.preventDefault();
+        setSubmitting(true);
+        setStatus({ type: '', message: '' });
         try {
             const response = await fetch(`${AUTH_API_URL}/api/auth/register`, {
                 method: 'POST',
@@ -19,54 +25,68 @@ function Registration() {
             });
             const result = await response.json().catch(() => ({}));
             if (response.ok) {
-                setMessage('Registration successful!');
+                setStatus({ type: 'success', message: 'Account created. You can now log in.' });
+                setPassword('');
             } else {
-                setMessage(result.error || 'Registration failed');
+                setStatus({ type: 'error', message: result.error || 'Registration failed' });
             }
         } catch (error) {
-            setMessage('An error occurred. Please try again.');
+            setStatus({ type: 'error', message: 'Could not reach the server. Please try again.' });
+        } finally {
+            setSubmitting(false);
         }
     };
 
     return (
-        <div>
-            <a id="logoSection" href="/">
-                <img id="logoCoverLetter" src={logo} alt="website icon" />
-            </a>
-            <div id="registrationInput">
-                <div id="registrationForm">
-                    <p id="fontRegistration">Register</p>
-                    <form id="registrationForm" onSubmit={handleRegister}>
+        <div className="auth">
+            <div className="auth-card">
+                <img className="auth-logo" src={logo} alt="" width="64" height="64" />
+                <h1 className="auth-title">Create your account</h1>
+                <p className="auth-subtitle">It only takes a moment.</p>
+                <form className="auth-form" onSubmit={handleRegister}>
+                    <label className="field" htmlFor="email">
+                        <span className="field-label">Email</span>
                         <input
                             className="input"
                             id="email"
-                            placeholder="Email"
+                            placeholder="you@example.com"
                             type="email"
+                            autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
+                    </label>
+                    <label className="field" htmlFor="password">
+                        <span className="field-label">Password</span>
                         <input
                             className="input"
                             id="password"
-                            placeholder="Password"
                             type="password"
+                            autoComplete="new-password"
+                            minLength={8}
+                            aria-describedby="passwordHint"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button id="RegistrationButton" className="generalButton" type="submit">
-                            Create an account
-                        </button>
-                    </form>
-                    <p id="orAccount">or</p>
-                    <Link to="/login">
-                        <button id="LoginButtonChange" className="generalButton" type="button">
-                            Login!
-                        </button>
-                    </Link>
-                    {message && <p id="responseMessage">{message}</p>}
-                </div>
+                        <span className="field-hint" id="passwordHint">At least 8 characters.</span>
+                    </label>
+                    <button className="button button-primary button-large button-block" type="submit" disabled={submitting}>
+                        {submitting ? 'Creating account…' : 'Create account'}
+                    </button>
+                </form>
+                {status.message && (
+                    <p
+                        className={`callout callout-${status.type} auth-message`}
+                        role={status.type === 'error' ? 'alert' : 'status'}
+                    >
+                        {status.message}
+                    </p>
+                )}
+                <p className="auth-switch">
+                    Already have an account? <Link to="/login">Log in</Link>
+                </p>
             </div>
         </div>
     );

@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import UserInfo from './personalInfo';
 import CV from './cvSection';
 import JobDescription from './jobDescriptionSection';
 import Submit from "./submitButton";
+import CoverLetterResult from "./coverLetterResult";
+
+const LANGUAGES = [
+    ["english", "English"],
+    ["french", "French"],
+    ["italian", "Italian"],
+    ["spanish", "Spanish"],
+    ["portuguese", "Portuguese"],
+    ["chinese", "Chinese"],
+    ["japanese", "Japanese"],
+    ["arabic", "Arabic"],
+    ["filipino", "Filipino"],
+];
 
 // Generates the cover letter via the serverless function so the OpenAI key stays server-side
 async function generateCoverLetter(payload) {
@@ -20,10 +33,13 @@ async function generateCoverLetter(payload) {
 
 
 function UserInput() {
-    
+
     // Defining variables
-    const [showPopup, setShowPopup] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [showErrors, setShowErrors] = useState(false);
+    const [result, setResult] = useState(null); // { text, positionName, companyName }
+    const resultRef = useRef(null);
     const [userInformation, setUserInformation] = useState({
         fullName: "",
         positionName: "",
@@ -38,11 +54,14 @@ function UserInput() {
 
     const [selectedLanguage, setSelectedLanguage] = useState("english"); // Default language is English
 
-    const handleLanguageChange = (e) => {
-        setSelectedLanguage(e.target.value);
-    };
+    // Bring the loading skeleton / finished letter into view
+    useEffect(() => {
+        if ((loading || result) && resultRef.current && resultRef.current.scrollIntoView) {
+            resultRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }, [loading, result]);
 
-    // Handle form changes 
+    // Handle form changes
     const handleUserInfoChange = (fieldName, value) => {
         setUserInformation(prevInfo => ({
             ...prevInfo,
@@ -62,8 +81,9 @@ function UserInput() {
         }));
     }
 
-    const handleGenerateClick = async () => {
-        if (showPopup) return; // Already generating
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (loading) return; // Already generating
 
         const payload = {
             fullName: userInformation.fullName.trim(),
@@ -74,78 +94,80 @@ function UserInput() {
             language: selectedLanguage,
         };
         if (Object.values(payload).some((value) => !value)) {
+            setShowErrors(true);
             setErrorMessage("Please fill in your name, position, company, CV and job description.");
             return;
         }
 
+        setShowErrors(false);
         setErrorMessage("");
-        setShowPopup(true);
+        setLoading(true);
         try {
             const coverLetter = await generateCoverLetter(payload);
-
-            const blob = new Blob([coverLetter], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'coverLetter.txt';
-            a.click();
-            URL.revokeObjectURL(url);
+            setResult({ text: coverLetter, positionName: payload.positionName, companyName: payload.companyName });
         } catch (error) {
             console.error('Error generating cover letter:', error.message);
             setErrorMessage(error.message);
         } finally {
-            setShowPopup(false);
+            setLoading(false);
         }
     };
 
 
     return (
-        <form>
-            <UserInfo 
-            fullName={userInformation.fullName}
-            positionName={userInformation.positionName}
-            companyName={userInformation.companyName}
-            onNameChange={(value) => handleUserInfoChange("fullName", value)}
-            onPositionChange={(value) => handleUserInfoChange("positionName", value)}
-            onCompanyChange={(value) => handleUserInfoChange("companyName", value)}
-            />
-            <CV 
-            CVValue={CVInformation.CVValue}
-            onCVChange = {(value) => handleCVChange(value)} />
-            <JobDescription
-            JDValue={JDInformation.JDValue}
-            onJDChange = {(value) => handleJDChange(value)} />
+        <>
+            <form className="composer" onSubmit={handleSubmit} noValidate>
+                <UserInfo
+                fullName={userInformation.fullName}
+                positionName={userInformation.positionName}
+                companyName={userInformation.companyName}
+                onNameChange={(value) => handleUserInfoChange("fullName", value)}
+                onPositionChange={(value) => handleUserInfoChange("positionName", value)}
+                onCompanyChange={(value) => handleUserInfoChange("companyName", value)}
+                showErrors={showErrors}
+                />
+                <CV
+                CVValue={CVInformation.CVValue}
+                onCVChange={handleCVChange}
+                showErrors={showErrors} />
+                <JobDescription
+                JDValue={JDInformation.JDValue}
+                onJDChange={handleJDChange}
+                showErrors={showErrors} />
 
-            {/* Language selection dropdown */}
-            <div id="selectLanguage">
-                <select id="language" value={selectedLanguage} onChange={handleLanguageChange}>
-                    <option value="english">English</option>
-                    <option value="french">French</option>
-                    <option value="italian">Italian</option>
-                    <option value="spanish">Spanish</option>
-                    <option value="portuguese">Portuguese</option>
-                    <option value="chinese">Chinese</option>
-                    <option value="japanese">Japanese</option>
-                    <option value="arabic">Arabic</option>
-                    <option value="filipino">Filipino</option>
-                </select>
-            </div>
-
-            {showPopup && (
-                <div id="userWait">
-                    <div className="popup">
-                        <p>Generating cover letter...</p>
-                    </div>
+                <div className="form-actions">
+                    <label className="language-picker" htmlFor="language">
+                        <span className="field-label">Write it in</span>
+                        <span className="select">
+                            <select id="language" value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
+                                {LANGUAGES.map(([value, label]) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))}
+                            </select>
+                        </span>
+                    </label>
+                    <Submit loading={loading} />
                 </div>
-            )}
 
-            {errorMessage && <p id="generateError" role="alert">{errorMessage}</p>}
+                {errorMessage && <p className="callout callout-error form-error" role="alert">{errorMessage}</p>}
+            </form>
 
-            <Submit onSubmitClick={handleGenerateClick} />
-        </form>
+            <div ref={resultRef} className="result" aria-live="polite">
+                {loading ? (
+                    <CoverLetterResult.Skeleton />
+                ) : (
+                    result && (
+                        <CoverLetterResult
+                            key={result.text}
+                            initialText={result.text}
+                            positionName={result.positionName}
+                            companyName={result.companyName}
+                        />
+                    )
+                )}
+            </div>
+        </>
     );
 }
 
 export default UserInput;
-
-

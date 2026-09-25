@@ -1,56 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import "../generalStyling.css"
 
-function JobDescription({JDValue, onJDChange}) {
-
-    const [JDfileName, setFileName] = useState("");
-
-    const JDhandleFileChange = (e) => {
-      const JDinput = e.target;
-  
-      let JDnewFileName = "";
-      if (JDinput.files && JDinput.files.length > 0) {
-        JDnewFileName = JDinput.files[0].name;
-      }
-  
-      setFileName(JDnewFileName);
-    };
-    
+function JobDescription({ JDValue, onJDChange, showErrors }) {
     return (
-        <div id="JDInput">
-          <div id="JDInfoInput">
-                <textarea 
-                className="JDSection" 
-                id="JDtext" 
-                name="JD" 
-                placeholder="Job Description"
-                onChange={(e) => onJDChange(e.target.value)}
-                value={JDValue} 
-                required />
-            <div className="JDSection" id="JDAttach">
-              <input
-                type="file"
-                name="JDfile"
-                id="JDfile"
-                className="inputfile"
-                accept=".pdf,.doc,.docx"
-                multiple
-                onChange={JDhandleFileChange}
-                required
-              />
-              <label htmlFor="JDfile" id="JDfileUpload">
-                {JDfileName ? (
-                  <span>{JDfileName}</span>
-                ) : (
-                  <>
-                    Choose a file<span></span>
-                  </>
-                )}
-              </label>
+        <section className="form-section" aria-labelledby="jd-heading">
+            <div className="section-heading">
+                <span className="step" aria-hidden="true">3</span>
+                <div>
+                    <h2 id="jd-heading">Job description</h2>
+                    <p>Paste the job advert you're applying for.</p>
+                </div>
             </div>
-          </div>
-        </div>
-      );
+            <textarea
+                className="input textarea"
+                id="JDtext"
+                name="JD"
+                aria-labelledby="jd-heading"
+                placeholder="Paste the job description here…"
+                rows={9}
+                maxLength={20000}
+                onChange={(e) => onJDChange(e.target.value)}
+                value={JDValue}
+                aria-invalid={(showErrors && !JDValue.trim()) || undefined}
+                required
+            />
+        </section>
+    );
 }
 
 export default JobDescription;

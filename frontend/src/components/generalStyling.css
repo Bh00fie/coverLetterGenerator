@@ -1,298 +1,381 @@
-/* GENERAL STYLING OF THE WEBPAGE */
-/* ##### INITIAL SECTION ##### */
-/* ##### LOGIN AND REGISTRATION BUTTON ##### */
-#initialSection {
-    display: flex;
-    flex-direction: column;
-}
-#userAccount {
-    display: flex;
-    justify-content: flex-end;
-    margin: 2.5rem 2.5rem ;
-    /* visibility: hidden;
-    display: none; */
-}
-#registrationButton{
-    margin-right: 1rem;
+/* ##### PAGE LAYOUT ##### */
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-/* Webpage Title Section */
-#webpageTitleSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10vh 10vh;
-    color: var(--textColor);
+/* ##### TOP BAR (Apple-style frosted glass) ##### */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
 }
-#webpageTitleSection h2 {
-    font-weight: 700;
-    font-size: 3rem;
-    /* letter-spacing: 0.1rem; */
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1080px;
+  height: 56px;
+  margin: 0 auto;
+  padding: 0 16px 0 20px;
 }
-#webpageTitleSection h3 {
-    font-size: 1.5rem;
-    /* letter-spacing: 0.1rem; */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
 }
-@media screen and (max-width: 1021px) {
-    #webpageTitleSection h3 {
-        margin-top: 1rem;
-    }
+.brand:hover {
+  text-decoration: none;
 }
-
-
-/* ##### USER INPUT ##### */
-/* ##### PERSONAL INFO ##### */
-#personalInput {
-    display: flex;
-    justify-content: center;
+.brand-icon {
+  width: 28px;
+  height: 28px;
 }
-#personalInfoInput {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
-#personalInfoInput input{
-    text-align: center;
-    padding: 0.5rem;
-    border: 2px var(--textColor) solid;
-    border-radius: 13px ;
-    margin: 0.5rem;
+.topbar-actions .button-primary {
+  margin-left: 4px;
 }
-
-/* ##### CV SECTION ##### */
-#CVInput {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem 0 0.5rem 0;
-}
-#CVInfoInput {
-    display: flex;
-    flex-direction: column;
-    align-content: center; 
-}
-#CVtext {
-    text-align: center;
-    padding: 0.5rem;
-    border: 2px var(--textColor) solid;
-    border-radius: 13px ;
-    margin: 0.5rem;
-    resize: none;
-    height: 10rem;
-    width: 30rem;
-}
-#CVAttach {
-    display: flex;
-    justify-content: center;
+@media screen and (max-width: 520px) {
+  .brand-name {
     display: none;
-}
-/* Attach file button styling --- taken from: https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */ 
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-.inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: black;
-    display: inline-block;
-    border-radius: 13px;
-    padding: 0.5rem;
-    background-color: rgba(255, 0, 0, 0.664);
-    border: 2px black solid;
-}
-.inputfile:focus + label,
-.inputfile + label:hover {
-    background-color: rgba(255, 0, 0, 0.87);
-}
-.inputfile + label {
-	cursor: pointer; /* "hand" cursor */
+  }
 }
 
-/* ##### JOB DESCRIPTION ##### */
-#JDInput {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem 0;  
+/* ##### HERO (Notion page header) ##### */
+.hero {
+  padding: 72px 0 40px;
 }
-#JDInfoInput {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+.page-icon {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 6px 16px rgba(0, 96, 223, 0.22));
+}
+.hero-title {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+.hero-subtitle {
+  max-width: 560px;
+  margin: 12px 0 0;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+@media screen and (max-width: 600px) {
+  .hero {
+    padding: 48px 0 32px;
+  }
+  .hero-title {
+    font-size: 32px;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+  }
+}
 
+/* ##### GENERATOR FORM ##### */
+.composer {
+  display: flex;
+  flex-direction: column;
 }
-#JDtext {
-    text-align: center;
-    padding: 0.5rem;
-    border: 2px var(--textColor) solid;
-    border-radius: 13px ;
-    margin: 0.5rem;
-    resize: none;
-    height: 10rem;
-    width: 30rem;
+.form-section {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
 }
-#JDAttach {
-    display: flex;
-    justify-content: center;
-    display: none;
+.section-heading {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
 }
-/* Attach file button styling --- taken from: https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */ 
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+.step {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 50%;
 }
-.inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: black;
-    display: inline-block;
-    border-radius: 13px;
-    padding: 0.5rem;
-    background-color: rgba(255, 0, 0, 0.664);
-    border: 2px black solid;
+.section-heading h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
-.inputfile:focus + label,
-.inputfile + label:hover {
-    background-color: rgba(255, 0, 0, 0.87);
+.section-heading p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: var(--text-muted);
 }
-.inputfile + label {
-	cursor: pointer; /* "hand" cursor */
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 @media screen and (max-width: 700px) {
-    #CVtext, #JDtext {
-        width: 20rem;
-    }
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* ##### SUBMIT BUTTON ##### */
-/* Button Section Styling */
-#submitSection {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2.5vh;
-    margin-top: .5vh;
-    border-bottom: 1px var(--textColor) solid ;
-    padding-bottom: 3rem;
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 8px;
+  border-top: 1px solid var(--border);
 }
-/* Button Styling */
-.generalButton {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: var(--buttonTextColor);
-    display: inline-block;
-    border-radius: 13px;
-    padding: 0.5rem;
-    background-color: var(--buttonColor);
-    border: 2px var(--buttonTextColor) solid;
+.language-picker {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
-.generalButton:hover{
-    background-color: var(--buttonColor);
+.form-error {
+  margin-top: 16px;
 }
-#selectLanguage {
-    display: flex;
-    justify-content: center;
-}
-#language {
-    text-align: center;
-    font-weight: 700;
-    padding: 0.5rem 2rem;
-    border: 2px var(--textColor) solid;
-    border-radius: 13px ;
-    margin: 0.5rem;
-}
-#userWait {
-    display: flex;
-    justify-content: center;
-}
-.popup {
-    text-align: center;
-    font-weight: 700;
-    width: fit-content;
-    padding: 0.5rem 2rem;
-    border: 2px var(--textColor) solid;
-    background-color: rgba(255, 0, 0, 0.327);
-    border-radius: 13px ;
-    margin: 0.5rem;
-    margin-top: 2.5vh;
-    font-size: 1.25em;
-    color: var(--textColor);
+@media screen and (max-width: 520px) {
+  .form-actions,
+  .language-picker {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .select select {
+    width: 100%;
+  }
 }
 
+/* ##### RESULT (the generated letter) ##### */
+.result {
+  margin: 40px 0 16px;
+  scroll-margin-top: 80px;
+}
+.result-card {
+  overflow: hidden;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+.result-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 14px 24px;
+  background-color: var(--bg-subtle);
+  border-bottom: 1px solid var(--border);
+}
+.result-header h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.result-header p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.result-actions {
+  display: flex;
+  gap: 8px;
+}
+.letter {
+  display: block;
+  width: 100%;
+  padding: 32px 40px 40px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  resize: none;
+  overflow: hidden;
+}
+.letter:focus {
+  outline: none;
+  box-shadow: none;
+}
+.result-hint {
+  margin: 10px 4px 0;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+@media screen and (max-width: 600px) {
+  .letter {
+    padding: 24px 20px 28px;
+    font-size: 16px;
+  }
+  .result-header {
+    padding: 12px 12px 12px 20px;
+  }
+}
 
+/* Loading skeleton */
+.skeleton {
+  padding: 32px 40px 40px;
+}
+.skeleton-status {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.skeleton-line {
+  height: 12px;
+  margin-bottom: 14px;
+  background: linear-gradient(90deg, var(--hover) 25%, var(--border) 50%, var(--hover) 75%);
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+.skeleton-line:nth-child(3n) {
+  width: 92%;
+}
+.skeleton-line:nth-child(4n) {
+  width: 78%;
+}
+.skeleton-line.short {
+  width: 40%;
+  margin-bottom: 28px;
+}
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ##### FAQ ##### */
+.faq {
+  margin-top: 56px;
+}
+.faq h2 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 4px;
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-right: 1.5px solid var(--text-muted);
+  border-bottom: 1.5px solid var(--text-muted);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.faq-item[open] summary::after {
+  transform: rotate(-135deg);
+}
+.faq-item summary:hover {
+  color: var(--text);
+  background-color: var(--hover);
+}
+.faq-item p {
+  margin: 0;
+  padding: 0 4px 16px;
+  color: var(--text-muted);
+}
 
 /* ##### FOOTER ##### */
-footer {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-bottom: 4rem;
-    color: var(--textColor);
+.site-footer {
+  margin-top: 72px;
+  border-top: 1px solid var(--border);
 }
-#userName, #userSocial {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 10rem;
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 28px 24px 40px;
 }
-#photoProfile {
-    width: 10rem;
-    background-color: white;
-    border-radius: 50%;
-    margin: 0 0 1rem 0;
+.footer-author {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
-#userName h5, #userSocial h5 {
-    font-weight: 700 ;
+.footer-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 50%;
 }
-#userSocial {
-    align-items: center;
+.footer-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
-.socialIcons {
-    margin: 1vh ;
+.footer-email {
+  font-size: 13px;
+  color: var(--text-muted);
 }
-@media screen and (max-width: 800px) {
-    footer {
-        flex-direction: column;
-        margin-bottom: 2rem;
-    }
-    #photoProfile{
-        margin: 1rem;
-    }
-    #userName, #userSocial {
-        justify-content: center;
-        align-items: center;
-    }
-    #userName {
-        margin-bottom: 1rem;
-    }
-    #submitSection {
-        margin-bottom: 0;
-    }
+.footer-social {
+  display: flex;
+  gap: 4px;
 }
-
-/* Theme toggle button -- if you remove it, it looks much cleaner */
-.theme-toggle button {
-    padding: 10px 20px;
-    border: 2px solid var(--textColor);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 20px;
-    background-color: var(--backgroundColor); /* Grey button */
-    color: var(--buttonTextColor); /* Button text color */
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .theme-toggle button:hover {
-    filter: brightness(0.9);
-  }
-  
+.footer-social .social-icon {
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.footer-social .social-icon:hover {
+  color: var(--text);
+  background-color: var(--hover);
+}

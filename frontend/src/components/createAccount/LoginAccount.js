@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./createAccount.css";
-import logo from "../images/logo.png";
 import { AUTH_API_URL } from "../../config";
+import usePageTitle from "../../usePageTitle";
+
+const logo = `${process.env.PUBLIC_URL}/logo.svg`;
 
 function Login() {
+    usePageTitle("Log in");
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState({ type: '', message: '' });
+    const [submitting, setSubmitting] = useState(false);
 
     const handleLogin = async (event) => {
         event.preventDefault();
+        setSubmitting(true);
+        setStatus({ type: '', message: '' });
         try {
             const response = await fetch(`${AUTH_API_URL}/api/auth/login`, {
                 method: 'POST',
@@ -19,56 +26,60 @@ function Login() {
             });
             const result = await response.json().catch(() => ({}));
             if (response.ok) {
-                setMessage('Login successful!');
                 localStorage.setItem('jwtToken', result.token);
-                window.location.href = '/'; // Redirect to the generator
+                navigate('/'); // Back to the generator
             } else {
-                setMessage(result.error || 'Login failed');
+                setStatus({ type: 'error', message: result.error || 'Login failed' });
             }
         } catch (error) {
-            setMessage('An error occurred. Please try again.');
+            setStatus({ type: 'error', message: 'Could not reach the server. Please try again.' });
+        } finally {
+            setSubmitting(false);
         }
     };
 
     return (
-        <div>
-            <Link id="logoSection" to="/">
-                <img id="logoCoverLetter" src={logo} alt="website icon" />
-            </Link>
-            <div id="loginInput">
-                <div id="loginForm">
-                    <p id="fontLogin">Login</p>
-                    <form id="loginForm" onSubmit={handleLogin}>
+        <div className="auth">
+            <div className="auth-card">
+                <img className="auth-logo" src={logo} alt="" width="64" height="64" />
+                <h1 className="auth-title">Welcome back</h1>
+                <p className="auth-subtitle">Log in to your account.</p>
+                <form className="auth-form" onSubmit={handleLogin}>
+                    <label className="field" htmlFor="emailLogin">
+                        <span className="field-label">Email</span>
                         <input
                             className="input"
                             id="emailLogin"
-                            placeholder="Email"
+                            placeholder="you@example.com"
                             type="email"
+                            autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
+                    </label>
+                    <label className="field" htmlFor="passwordLogin">
+                        <span className="field-label">Password</span>
                         <input
                             className="input"
                             id="passwordLogin"
-                            placeholder="Password"
                             type="password"
+                            autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <button id="LoginButton" className="generalButton" type="submit">
-                            Login!
-                        </button>
-                    </form>
-                    <p id="orAccount">or</p>
-                    <Link to="/registration">
-                        <button id="RegisterButtonChange" className="generalButton" type="button">
-                            Create an account!
-                        </button>
-                    </Link>
-                    {message && <p id="responseMessageLogin">{message}</p>}
-                </div>
+                    </label>
+                    <button className="button button-primary button-large button-block" type="submit" disabled={submitting}>
+                        {submitting ? 'Logging in…' : 'Log in'}
+                    </button>
+                </form>
+                {status.message && (
+                    <p className={`callout callout-${status.type} auth-message`} role="alert">{status.message}</p>
+                )}
+                <p className="auth-switch">
+                    New here? <Link to="/registration">Create an account</Link>
+                </p>
             </div>
         </div>
     );
