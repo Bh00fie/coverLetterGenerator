@@ -1,15 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#3a95ff"/>
-      <stop offset="1" stop-color="#0060df"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="url(#tile)"/>
-  <path d="M21 13h15.5L46 22.5V47a4 4 0 0 1-4 4H21a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z" fill="#ffffff"/>
-  <path d="M36.5 13v6.5a3 3 0 0 0 3 3H46z" fill="#cfe3ff"/>
-  <rect x="22.5" y="32" width="18" height="2.6" rx="1.3" fill="#0060df" opacity="0.28"/>
-  <rect x="22.5" y="37.5" width="18" height="2.6" rx="1.3" fill="#0060df" opacity="0.28"/>
-  <rect x="22.5" y="43" width="11" height="2.6" rx="1.3" fill="#0060df" opacity="0.28"/>
-  <path d="M27 18.5c.5 2.9 1.6 4 4.5 4.5-2.9.5-4 1.6-4.5 4.5-.5-2.9-1.6-4-4.5-4.5 2.9-.5 4-1.6 4.5-4.5z" fill="#0071e3"/>
+  <rect x="3" y="3" width="58" height="58" rx="13" fill="#ffffff" stroke="#111111" stroke-width="4"/>
+  <g fill="none" stroke="#111111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 14.5h14l9.5 9.5v22.5a3 3 0 0 1-3 3H22a3 3 0 0 1-3-3v-29a3 3 0 0 1 3-3z"/>
+    <path d="M36 14.5v6.5a3 3 0 0 0 3 3h6.5"/>
+    <path d="M24.5 34h15M24.5 39.5h15M24.5 45h9"/>
+  </g>
+  <path d="M28 19.5c.4 2.4 1.3 3.3 3.7 3.7-2.4.4-3.3 1.3-3.7 3.7-.4-2.4-1.3-3.3-3.7-3.7 2.4-.4 3.3-1.3 3.7-3.7z" fill="#111111"/>
 </svg>

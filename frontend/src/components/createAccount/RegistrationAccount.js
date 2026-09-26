@@ -7,7 +7,7 @@ import usePageTitle from "../../usePageTitle";
 const logo = `${process.env.PUBLIC_URL}/logo.svg`;
 
 function Registration() {
-    usePageTitle("Sign up");
+    usePageTitle("Register");
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState({ type: '', message: '' });
@@ -38,30 +38,30 @@ function Registration() {
     };
 
     return (
-        <div className="auth">
-            <div className="auth-card">
-                <img className="auth-logo" src={logo} alt="" width="64" height="64" />
-                <h1 className="auth-title">Create your account</h1>
-                <p className="auth-subtitle">It only takes a moment.</p>
-                <form className="auth-form" onSubmit={handleRegister}>
-                    <label className="field" htmlFor="email">
-                        <span className="field-label">Email</span>
+        <div>
+            <Link id="logoSection" to="/" aria-label="Back to the generator">
+                <img id="logoCoverLetter" src={logo} alt="" width="72" height="72" />
+            </Link>
+            <div id="registrationInput">
+                <div id="registrationForm">
+                    <h1 id="fontRegistration">Register</h1>
+                    <form className="authFields" onSubmit={handleRegister}>
                         <input
                             className="input"
                             id="email"
-                            placeholder="you@example.com"
+                            aria-label="Email"
+                            placeholder="Email"
                             type="email"
                             autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                    </label>
-                    <label className="field" htmlFor="password">
-                        <span className="field-label">Password</span>
                         <input
                             className="input"
                             id="password"
+                            aria-label="Password"
+                            placeholder="Password"
                             type="password"
                             autoComplete="new-password"
                             minLength={8}
@@ -70,23 +70,24 @@ function Registration() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <span className="field-hint" id="passwordHint">At least 8 characters.</span>
-                    </label>
-                    <button className="button button-primary button-large button-block" type="submit" disabled={submitting}>
-                        {submitting ? 'Creating account…' : 'Create account'}
-                    </button>
-                </form>
-                {status.message && (
-                    <p
-                        className={`callout callout-${status.type} auth-message`}
-                        role={status.type === 'error' ? 'alert' : 'status'}
-                    >
-                        {status.message}
-                    </p>
-                )}
-                <p className="auth-switch">
-                    Already have an account? <Link to="/login">Log in</Link>
-                </p>
+                        <p className="passwordHint" id="passwordHint">At least 8 characters</p>
+                        <button id="RegistrationButton" className="generalButton" type="submit" disabled={submitting}>
+                            {submitting ? 'Creating account…' : 'Create an account'}
+                        </button>
+                    </form>
+                    {status.message && (
+                        <p
+                            className={`callout callout-${status.type}`}
+                            role={status.type === 'error' ? 'alert' : 'status'}
+                        >
+                            {status.message}
+                        </p>
+                    )}
+                    <p id="orAccount">or</p>
+                    <Link to="/login" id="LoginButtonChange" className="generalButton subtle">
+                        Login!
+                    </Link>
+                </div>
             </div>
         </div>
     );

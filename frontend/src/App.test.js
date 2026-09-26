@@ -10,21 +10,21 @@ const fillForm = () => {
   fireEvent.change(screen.getByLabelText('Full name'), { target: { value: 'Ada Lovelace' } });
   fireEvent.change(screen.getByLabelText('Position'), { target: { value: 'Engineer' } });
   fireEvent.change(screen.getByLabelText('Company'), { target: { value: 'Acme' } });
-  fireEvent.change(screen.getByLabelText('Your CV', { selector: 'textarea' }), { target: { value: 'My CV' } });
-  fireEvent.change(screen.getByLabelText('Job description', { selector: 'textarea' }), { target: { value: 'The job' } });
+  fireEvent.change(screen.getByLabelText('Your CV'), { target: { value: 'My CV' } });
+  fireEvent.change(screen.getByLabelText('Job description'), { target: { value: 'The job' } });
 };
 
 test('renders the generator page', () => {
   render(<App />);
   expect(screen.getByRole('heading', { level: 1, name: /cover letter generator/i })).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: /generate cover letter/i })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: /generate/i })).toBeInTheDocument();
   expect(screen.getByText(/frequently asked questions/i)).toBeInTheDocument();
 });
 
 test('asks for missing fields instead of calling the API', () => {
   global.fetch = jest.fn();
   render(<App />);
-  fireEvent.click(screen.getByRole('button', { name: /generate cover letter/i }));
+  fireEvent.click(screen.getByRole('button', { name: /generate/i }));
   expect(screen.getByRole('alert')).toHaveTextContent(/please fill in/i);
   expect(screen.getByLabelText('Full name')).toHaveAttribute('aria-invalid', 'true');
   expect(global.fetch).not.toHaveBeenCalled();
@@ -38,7 +38,7 @@ test('shows the server error when generation fails', async () => {
   });
   render(<App />);
   fillForm();
-  fireEvent.click(screen.getByRole('button', { name: /generate cover letter/i }));
+  fireEvent.click(screen.getByRole('button', { name: /generate/i }));
 
   await waitFor(() => expect(screen.getByRole('alert')).toHaveTextContent('Server exploded'));
   const [url, options] = global.fetch.mock.calls[0];
@@ -53,7 +53,7 @@ test('shows the generated letter so it can be edited', async () => {
   });
   render(<App />);
   fillForm();
-  fireEvent.click(screen.getByRole('button', { name: /generate cover letter/i }));
+  fireEvent.click(screen.getByRole('button', { name: /generate/i }));
 
   const letter = await screen.findByLabelText('Generated cover letter');
   expect(letter).toHaveValue('Dear Acme team,');
@@ -65,6 +65,6 @@ test('shows the generated letter so it can be edited', async () => {
 test('sets a page title on the login page', () => {
   window.history.pushState({}, '', '/login');
   render(<App />);
-  expect(document.title).toBe('Log in · Cover Letter Generator');
-  expect(screen.getByRole('heading', { name: /welcome back/i })).toBeInTheDocument();
+  expect(document.title).toBe('Login · Cover Letter Generator');
+  expect(screen.getByRole('heading', { name: /^login$/i })).toBeInTheDocument();
 });

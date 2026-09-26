@@ -48,18 +48,18 @@ function CoverLetterResult({ initialText, positionName, companyName }) {
     };
 
     return (
-        <>
-            <article className="result-card">
-                <header className="result-header">
+        <div className="resultWrap">
+            <article className="resultCard">
+                <header className="resultHeader">
                     <div>
                         <h2>Your cover letter</h2>
                         <p>{positionName} · {companyName}</p>
                     </div>
-                    <div className="result-actions">
-                        <button type="button" className="button button-secondary" onClick={handleCopy}>
+                    <div className="resultActions">
+                        <button type="button" className="generalButton subtle" onClick={handleCopy}>
                             {copied ? "Copied" : "Copy"}
                         </button>
-                        <button type="button" className="button button-primary" onClick={handleDownload}>
+                        <button type="button" className="generalButton" onClick={handleDownload}>
                             Download
                         </button>
                     </div>
@@ -73,22 +73,21 @@ function CoverLetterResult({ initialText, positionName, companyName }) {
                     spellCheck="true"
                 />
             </article>
-            <p className="result-hint">You can edit the letter above before copying or downloading it.</p>
-        </>
+            <p className="resultHint">You can edit the letter above before copying or downloading it.</p>
+        </div>
     );
 }
 
 CoverLetterResult.Skeleton = function Skeleton() {
     return (
-        <div className="result-card" aria-busy="true">
+        <div className="resultCard" aria-busy="true">
             <div className="skeleton">
-                <p className="skeleton-status">
+                <p className="skeletonStatus">
                     <span className="spinner" aria-hidden="true" />
                     Writing your cover letter…
                 </p>
-                <div className="skeleton-line short" />
                 {Array.from({ length: 9 }, (_, i) => (
-                    <div key={i} className="skeleton-line" />
+                    <div key={i} className="skeletonLine" />
                 ))}
             </div>
         </div>

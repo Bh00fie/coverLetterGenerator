@@ -3,16 +3,18 @@ import "../generalStyling.css"
 
 function Submit({ loading }) {
     return (
-        <button id="submitButton" className="button button-primary button-large" type="submit" disabled={loading}>
-            {loading ? (
-                <>
-                    <span className="spinner" aria-hidden="true" />
-                    Generating…
-                </>
-            ) : (
-                "Generate cover letter"
-            )}
-        </button>
+        <div id="submitSection">
+            <button id="submitButton" className="generalButton" type="submit" disabled={loading}>
+                {loading ? (
+                    <>
+                        <span className="spinner" aria-hidden="true" />
+                        Generating…
+                    </>
+                ) : (
+                    "Generate"
+                )}
+            </button>
+        </div>
     );
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/header';
+import ThemeToggle from './components/themeToggle';
 import UserInput from './components/UserInput/userInput';
 import Footer from './components/footer';
 import InitialSection from './components/initialSection';
@@ -32,10 +32,12 @@ function App() {
 
     return (
         <Router>
-            <Header theme={theme} onToggleTheme={toggleTheme} />
-            <main className="page">
+            {/* Theme Toggle Button */}
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <main>
                 <Routes>
-                    <Route path="/" element={<><InitialSection /><UserInput /><Faq /></>} />
+                    {/* Define routes for each page */}
+                    <Route path="/" element={<><InitialSection /><UserInput /><hr className="sectionDivider" /><Faq /></>} />
                     <Route path="/registration" element={<Registration />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>

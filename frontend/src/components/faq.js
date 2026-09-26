@@ -33,16 +33,14 @@ const structuredData = {
 
 function Faq() {
     return (
-        <section className="faq" aria-labelledby="faq-heading">
+        <section id="faq" aria-labelledby="faq-heading">
             <h2 id="faq-heading">Frequently asked questions</h2>
-            <div className="faq-list">
-                {QUESTIONS.map(({ question, answer }) => (
-                    <details key={question} className="faq-item">
-                        <summary>{question}</summary>
-                        <p>{answer}</p>
-                    </details>
-                ))}
-            </div>
+            {QUESTIONS.map(({ question, answer }) => (
+                <details key={question} className="faqItem">
+                    <summary>{question}</summary>
+                    <p>{answer}</p>
+                </details>
+            ))}
             <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         </section>
     );

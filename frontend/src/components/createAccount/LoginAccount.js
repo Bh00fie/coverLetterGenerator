@@ -7,7 +7,7 @@ import usePageTitle from "../../usePageTitle";
 const logo = `${process.env.PUBLIC_URL}/logo.svg`;
 
 function Login() {
-    usePageTitle("Log in");
+    usePageTitle("Login");
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -39,47 +39,48 @@ function Login() {
     };
 
     return (
-        <div className="auth">
-            <div className="auth-card">
-                <img className="auth-logo" src={logo} alt="" width="64" height="64" />
-                <h1 className="auth-title">Welcome back</h1>
-                <p className="auth-subtitle">Log in to your account.</p>
-                <form className="auth-form" onSubmit={handleLogin}>
-                    <label className="field" htmlFor="emailLogin">
-                        <span className="field-label">Email</span>
+        <div>
+            <Link id="logoSection" to="/" aria-label="Back to the generator">
+                <img id="logoCoverLetter" src={logo} alt="" width="72" height="72" />
+            </Link>
+            <div id="loginInput">
+                <div id="loginForm">
+                    <h1 id="fontLogin">Login</h1>
+                    <form className="authFields" onSubmit={handleLogin}>
                         <input
                             className="input"
                             id="emailLogin"
-                            placeholder="you@example.com"
+                            aria-label="Email"
+                            placeholder="Email"
                             type="email"
                             autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                    </label>
-                    <label className="field" htmlFor="passwordLogin">
-                        <span className="field-label">Password</span>
                         <input
                             className="input"
                             id="passwordLogin"
+                            aria-label="Password"
+                            placeholder="Password"
                             type="password"
                             autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                    </label>
-                    <button className="button button-primary button-large button-block" type="submit" disabled={submitting}>
-                        {submitting ? 'Logging in…' : 'Log in'}
-                    </button>
-                </form>
-                {status.message && (
-                    <p className={`callout callout-${status.type} auth-message`} role="alert">{status.message}</p>
-                )}
-                <p className="auth-switch">
-                    New here? <Link to="/registration">Create an account</Link>
-                </p>
+                        <button id="LoginButton" className="generalButton" type="submit" disabled={submitting}>
+                            {submitting ? 'Logging in…' : 'Login!'}
+                        </button>
+                    </form>
+                    {status.message && (
+                        <p className={`callout callout-${status.type}`} role="alert">{status.message}</p>
+                    )}
+                    <p id="orAccount">or</p>
+                    <Link to="/registration" id="RegisterButtonChange" className="generalButton subtle">
+                        Create an account!
+                    </Link>
+                </div>
             </div>
         </div>
     );

@@ -116,8 +116,8 @@ function UserInput() {
 
     return (
         <>
-            <form className="composer" onSubmit={handleSubmit} noValidate>
-                <UserInfo
+            <form id="generatorForm" onSubmit={handleSubmit} noValidate>
+                <UserInfo 
                 fullName={userInformation.fullName}
                 positionName={userInformation.positionName}
                 companyName={userInformation.companyName}
@@ -126,7 +126,7 @@ function UserInput() {
                 onCompanyChange={(value) => handleUserInfoChange("companyName", value)}
                 showErrors={showErrors}
                 />
-                <CV
+                <CV 
                 CVValue={CVInformation.CVValue}
                 onCVChange={handleCVChange}
                 showErrors={showErrors} />
@@ -135,24 +135,21 @@ function UserInput() {
                 onJDChange={handleJDChange}
                 showErrors={showErrors} />
 
-                <div className="form-actions">
-                    <label className="language-picker" htmlFor="language">
-                        <span className="field-label">Write it in</span>
-                        <span className="select">
-                            <select id="language" value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
-                                {LANGUAGES.map(([value, label]) => (
-                                    <option key={value} value={value}>{label}</option>
-                                ))}
-                            </select>
-                        </span>
-                    </label>
-                    <Submit loading={loading} />
+                {/* Language selection dropdown */}
+                <div id="selectLanguage">
+                    <select id="language" aria-label="Language" value={selectedLanguage} onChange={(e) => setSelectedLanguage(e.target.value)}>
+                        {LANGUAGES.map(([value, label]) => (
+                            <option key={value} value={value}>{label}</option>
+                        ))}
+                    </select>
                 </div>
 
-                {errorMessage && <p className="callout callout-error form-error" role="alert">{errorMessage}</p>}
+                <Submit loading={loading} />
+
+                {errorMessage && <p className="callout callout-error" role="alert">{errorMessage}</p>}
             </form>
 
-            <div ref={resultRef} className="result" aria-live="polite">
+            <div ref={resultRef} id="result" aria-live="polite">
                 {loading ? (
                     <CoverLetterResult.Skeleton />
                 ) : (
